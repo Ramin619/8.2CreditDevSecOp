@@ -3,6 +3,12 @@ pipeline {
 
     stages {
 
+        stage('Checkout') {
+            steps {
+                git branch: 'main', url: 'https://github.com/Ramin619/8.2CreditDevSecOp.git'
+            }
+        }
+
         stage('Build') {
             steps {
                 echo 'Building the application...'
@@ -44,6 +50,5 @@ pipeline {
                 echo 'Deploying to production environment...'
             }
         }
-
     }
 }
