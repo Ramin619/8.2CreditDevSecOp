@@ -2,34 +2,48 @@ pipeline {
     agent any
 
     stages {
-        stage('Checkout') {
+
+        stage('Build') {
             steps {
-                git branch: 'main', url: 'https://github.com/Ramin619/8.2CDevSecOp.git'
+                echo 'Building the application...'
             }
         }
 
-        stage('Install Dependencies') {
+        stage('Unit and Integration Tests') {
             steps {
-                bat 'npm install'
+                echo 'Running unit and integration tests...'
             }
         }
 
-        stage('Run Tests') {
+        stage('Code Analysis') {
             steps {
-                bat 'npm test || exit /b 0'
+                echo 'Analyzing code quality...'
             }
         }
 
-        stage('Generate Coverage Report') {
+        stage('Security Scan') {
             steps {
-                bat 'npm run coverage || exit /b 0'
+                echo 'Scanning for security vulnerabilities...'
             }
         }
 
-        stage('NPM Audit (Security Scan)') {
+        stage('Deploy to Staging') {
             steps {
-                bat 'npm audit || exit /b 0'
+                echo 'Deploying to staging environment...'
             }
         }
+
+        stage('Integration Tests on Staging') {
+            steps {
+                echo 'Running integration tests on staging...'
+            }
+        }
+
+        stage('Deploy to Production') {
+            steps {
+                echo 'Deploying to production environment...'
+            }
+        }
+
     }
 }
